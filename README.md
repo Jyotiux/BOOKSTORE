@@ -1,70 +1,115 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Bookstore Web App
 
-## Available Scripts
+A full-stack bookstore web application built with **React**, **Node.js**, and **Firebase/MongoDB**.  
+Users can browse books, add to cart, and place orders. Admins can manage books.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+##  Features (V1)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **User Authentication**
+  - Google Sign-In + Email/Password
+  - User profiles stored in Firestore/MongoDB
+- **Book Listing**
+  - View all books with title, author, price, and cover image
+  - Add to cart
+- **Cart & Orders**
+  - Add/remove books to/from cart
+  - Checkout with shipping address
+  - Order history per user
+- **Role-based Access**
+  - Normal users → browse, add to cart, place orders
+  - Admins → manage books via API (add/update/delete)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+##  Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Frontend:** React + TailwindCSS
+- **Backend:** Node.js + Express
+- **Database:** Firebase Realtime DB / Firestore OR MongoDB
+- **Authentication:** Firebase Auth (Google + Email/Password)
+- **Deployment:** Firebase Hosting / Vercel (frontend), Render / Railway / Firebase Functions (backend)
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##  Project Structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+frontend/
+├─ src/
+│  ├─ pages/       # Checkout, BookList, etc.
+│  ├─ components/  # BookCard, Navbar, etc.
+│  └─ context/     # AuthContext, CartContext
+backend/
+├─ models/         # User, Book, Cart, Order
+├─ controllers/    # authController, bookController, cartController, orderController
+├─ routes/         # authRoutes, bookRoutes, cartRoutes, orderRoutes
+└─ middleware/     # authMiddleware
 
-### `npm run eject`
+````
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+##  Getting Started
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Frontend
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+cd frontend
+npm install
+npm start
+````
 
-## Learn More
+### Backend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+cd backend
+npm install
+npm run dev
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Environment Variables
 
-### Code Splitting
+Create a `.env` in the backend:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+PORT=5000
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+FIREBASE_PROJECT_ID=your_firebase_project_id
+FIREBASE_CLIENT_EMAIL=your_firebase_client_email
+FIREBASE_PRIVATE_KEY="your_firebase_private_key"
+```
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+##  API Endpoints (V1)
 
-### Making a Progressive Web App
+* **Auth**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+  * `POST /api/auth/signup`
+  * `POST /api/auth/login`
+* **Books**
 
-### Advanced Configuration
+  * `GET /api/books`
+  * `POST /api/books` (admin)
+  * `PUT /api/books/:id` (admin)
+  * `DELETE /api/books/:id` (admin)
+* **Cart**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  * `GET /api/carts`
+  * `POST /api/carts` (add book)
+  * `DELETE /api/carts` (remove book)
+* **Orders**
 
-### Deployment
+  * `POST /api/orders` (checkout)
+  * `GET /api/orders` (user order history)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Do you want me to do that?
+```
