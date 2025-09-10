@@ -111,5 +111,3 @@ FIREBASE_PRIVATE_KEY="your_firebase_private_key"
 ---
 
 
-Do you want me to do that?
-```
